@@ -14,20 +14,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup Python
       uses: actions/setup-python@v3
       with:
         python-version: 3.9
+        cache: 'pip'
+
     - name: Install dependencies
-      run: pip install -r requirements.txt
-      
-    - uses: yaananth/run-notebook@v2
-#       env:
-#         RUNNER: ${{ toJson(runner) }}
-#         SECRETS: ${{ toJson(secrets) }}
-#         GITHUB: ${{ toJson(github) }}
-      with:
-        notebook: "DNA_prediction.ipynb"
-#         params: "PATHTOPARAMS.json"
-        isReport: True
-        poll: True
+      run: 
+        pip install -r requirements.txt
+        pip install jupyter
+
+    - name: Run notebook
+      run:
+        jupyter nbconvert --to script weather_locations.ipynb
+        python weather_locations.py
