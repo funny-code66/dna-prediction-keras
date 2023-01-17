@@ -28,5 +28,5 @@ jobs:
 
     - name: Run notebook
       run:
-        jupyter nbconvert --to script weather_locations.ipynb
-        python weather_locations.py
+        jupyter nbconvert --to script DNA_prediction.ipynb
+        python DNA_prediction.py
