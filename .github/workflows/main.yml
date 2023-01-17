@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      
+    - uses: yaananth/run-notebook@v2
+#       env:
+#         RUNNER: ${{ toJson(runner) }}
+#         SECRETS: ${{ toJson(secrets) }}
+#         GITHUB: ${{ toJson(github) }}
+      with:
+        notebook: "DNA_prediction.ipynb"
+#         params: "PATHTOPARAMS.json"
+        isReport: True
+        poll: True
