@@ -3,5 +3,5 @@ numpy
 matplotlib
 tqdm
 scikit-learn
-tensorflw
+tensorflow
 keras
